@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{upb-cn}[02.10.2024] 
+\ProvidesClass{upb-cn}[21.04.2023] 
 
 \DeclareOption{thesis}{
     % for thesis
@@ -12,12 +12,6 @@
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{report}}
 \ProcessOptions\relax
 \LoadClass[a4paper,twoside]{report}
-
-% initialise thesis-related macros to empty strings
-\newcommand{\@thesisdegree}{}
-\newcommand{\@secondreviewer}{}
-\newcommand{\@supervisors}{}
-\newcommand{\@submissiondate}{}
 
 % page setup
 \RequirePackage[left=1in,right=1in,top=0in,bottom=1in,includehead, headheight=1in]{geometry}
@@ -93,7 +87,7 @@
 }{
     \fancyhead[LE,LO]{
         \ifthenelse{\value{page}=1}{
-            \includegraphics[height=42pt]{./graphics/upb-logo}
+            \includegraphics[height=42pt]{./template-core/graphics/upb-logo}
         }{\@lheader}
     }
     \fancyhead[RE,RO]{\ifthenelse{\value{page}=1}{}{\@rheader}}
@@ -102,30 +96,8 @@
 
 % title style
 \newcommand{\makethetitle}{
-    \thispagestyle{empty}
-    \@ifclasswith{upb-cn}{thesis}{
-        % thesis cover page
-        \begin{center}
-            \vspace*{2cm}
-            {\headlinecolor\Huge\sf\bfseries\@title \par}
-            \vspace{1cm}
-            {\Large\sf\bfseries \@thesisdegree \par}
-            \vspace{1cm}
-            {\large\bfseries \@author \par}
-            \vspace{1cm}
-            {\normalsize \bfseries Supervisors: \@supervisors \par}
-            {\normalsize \bfseries Second Reviewer: \@secondreviewer \par}
-            \vspace{1cm}
-            {\normalsize \bfseries Submission Date: \@submissiondate \par}
-            \vfill
-            \includegraphics[height=42pt]{./graphics/upb-logo}
-        \end{center}
-        \clearpage
-    }{
-        % regular cover page
-        {\headlinecolor\Large\sf\bfseries\noindent\@title \bigskip \\
-        \color{black}\large\bfseries\@author\bigskip}
-    }
+    {\headlinecolor\Large\sf\bfseries\noindent\@title \bigskip \\
+    \color{black}\large\bfseries\@author\bigskip}
 }
 
 % basic document format
